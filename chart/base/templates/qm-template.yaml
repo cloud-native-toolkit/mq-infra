@@ -1,0 +1,29 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: {{ .Values.name }}
+  # name: {{ include "starter-kit.fullname" . }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
+    helm.sh/hook-weight: "300"
+spec:
+  license:
+    {{- toYaml .Values.license | nindent 4 }}
+  queueManager:
+    {{- toYaml .Values.queuemanager | nindent 4 }}
+    # mqsc:
+    # - configMap:
+    #     name: {{ .Values.mqsc.configmap }}
+    #     items:
+    #     - {{ .Values.mqsc.queue }}
+    #     - {{ .Values.mqsc.channel }}
+  securityContext:
+    initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
+  template:
+    {{- toYaml .Values.template | nindent 4 }}
+  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+  tracing:
+    {{- toYaml .Values.tracing | nindent 4 }}
+  version: {{ .Values.version }}
+  web:
+    enabled: {{ .Values.web.enabled }}

@@ -3,8 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.mqsc.configmap }}
 data:
-  {{- $files := .Files }}
-  {{- range tuple "queue.mqsc" "channel.mqsc" }}
-{{ . }}: |-
-{{ $files.Get . | indent 2}}
-  {{- end }}
+  {{- (.Files.Glob "config/*").AsConfig | nindent 2 }}

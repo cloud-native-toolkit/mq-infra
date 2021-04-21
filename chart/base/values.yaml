@@ -66,6 +66,9 @@ template:
       name: qmgr
       resources: {}
 
+configmap:
+  path: mqsc/**.mqsc
+
 terminationGracePeriodSeconds: 30
 
 tracing:

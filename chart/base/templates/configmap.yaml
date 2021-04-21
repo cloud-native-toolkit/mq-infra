@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.mqsc.configmap }}
 data:
-  {{- (.Files.Glob "{{ .Values.configmap.path }}/*").AsConfig | nindent 2 }}
+  {{- $path := printf "%s/*" .Values.configmap.path }}
+  {{ (.Files.Glob $path).AsConfig | indent 2 }}

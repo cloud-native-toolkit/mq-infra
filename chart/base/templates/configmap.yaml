@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.mqsc.configmap }}
 data:
   {{- $files := .Files }}
-  {{- range list "queue.mqsc" "channel.mqsc" }}
+  {{- range tuple "queue.mqsc" "channel.mqsc" }}
 {{ . }}: |-
 {{ $files.Get . | indent 2}}
   {{- end }}

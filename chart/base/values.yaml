@@ -72,7 +72,7 @@ template:
       resources: {}
 
 configmap:
-  path: mqsc/**.mqsc
+  path: config
 
 terminationGracePeriodSeconds: 30
 

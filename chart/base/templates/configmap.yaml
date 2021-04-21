@@ -3,10 +3,8 @@ kind: ConfigMap
 metadata:
   name: mqsc-configmap
 data:
-  {{ $currentScope := . }}
-    {{ range $path, $_ :=  .Files.Glob  "{{ .Values.configmap.path }}" }}
-    {{- with $currentScope}}
-{{ base $path }}: |-
-{{ .Files.Get $path | indent 2 }}
-    {{- end }}
-    {{ end }}
+  {{- $files := .Files }}
+  {{- range tuple "queue.mqsc" "channel.mqsc" }}
+  {{ . }}: |-
+        {{ $files.Get . }}
+  {{- end }}

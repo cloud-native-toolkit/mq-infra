@@ -10,6 +10,8 @@ spec:
     {{- toYaml .Values.license | nindent 4 }}
   queueManager:
     {{- toYaml .Values.queuemanager | nindent 4 }}
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
     mqsc:
     - configMap:
         name: {{ .Values.mqsc.configmap }}

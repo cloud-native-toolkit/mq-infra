@@ -10,7 +10,7 @@ This project contains necessary artifacts for deploying queuemanager on Openshif
 
 ## Introduction
 
-This guide provides a walkthrough on how to set up an Queuemanager.  The Github repository is a template containing a Dockerfile and Helm Chart which is used with the [Cloud Native Toolkit](https://cloudnativetoolkit.dev/) to register a Tekton pipeline to build a Queuemanager image and deploy it on a containerized instance of IBM MQ. 
+This guide provides a walkthrough on how to set up an Queuemanager.  The Github repository is a template containing a Dockerfile and Helm Chart which is used with the [Cloud Native Toolkit](https://cloudnativetoolkit.dev/) to register a Tekton pipeline to build a Queuemanager image and deploy it on a containerized instance of IBM MQ.
 
 This repo contains the below artifacts.
 
@@ -38,7 +38,7 @@ This repo contains the below artifacts.
 
 - [IBM Catalog Operator](https://www.ibm.com/docs/en/app-connect/11.0.0?topic=iicia-enabling-operator-catalog-cloud-pak-foundational-services-operator)
 - [IBM Common Services](https://github.com/IBM/ibm-common-service-operator)
-- [IBM MQ Operator](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=integration-using-mq-in-cloud-pak-openshift) 
+- [IBM MQ Operator](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=integration-using-mq-in-cloud-pak-openshift)
 - [Cloudnative toolkit](https://cloudnativetoolkit.dev/overview)
 
 ## Deploy Queuemanager
@@ -69,7 +69,12 @@ oc pipeline --tekton
 
 - To make sure the queuemanager is successfully deployed, run `oc get queuemanager`.
 
+Note: This pipeline demonstrates how to add in the `mqsc` configuration files. Similarly, if you want to configure an `qm.ini`, please create a configMap for the same and inject it under `spec.queueManager` in the `qm-template.yaml` using the below snippet.
 
-
-
-
+```yaml
+ini:
+- configMap:
+    name: {{ .Values.ini.configmap }}
+    items:
+    - {{ .Values.ini.name }}
+```

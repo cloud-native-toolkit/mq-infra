@@ -59,6 +59,10 @@ mqsc:
   queue: queue.mqsc
   channel: channel.mqsc
 
+ini:
+  configmap:
+  name:
+
 securityContext:
   initVolumeAsRoot: false
 

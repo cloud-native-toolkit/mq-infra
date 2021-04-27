@@ -78,6 +78,9 @@ template:
 configmap:
   path: config
 
+cert:
+  secretName: mq-crt-secret
+
 terminationGracePeriodSeconds: 30
 
 tracing:

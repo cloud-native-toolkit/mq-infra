@@ -16,8 +16,7 @@ spec:
     - configMap:
         name: {{ .Values.mqsc.configmap }}
         items:
-        - {{ .Values.mqsc.queue }}
-        - {{ .Values.mqsc.channel }}
+        - {{ .Values.mqsc.name }}
   securityContext:
     initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
   template:

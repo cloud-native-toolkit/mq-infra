@@ -56,8 +56,7 @@ queuemanager:
 
 mqsc:
   configmap: mqsc-configmap
-  queue: queue.mqsc
-  channel: channel.mqsc
+  name: config.mqsc
 
 ini:
   configmap:

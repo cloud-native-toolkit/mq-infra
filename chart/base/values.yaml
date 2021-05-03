@@ -70,7 +70,7 @@ template:
     containers:
     - env:
       - name: MQSNOAUT
-        value: "yes"
+        value: "no"
       name: qmgr
       resources: {}
 

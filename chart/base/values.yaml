@@ -78,7 +78,7 @@ configmap:
   path: config
 
 cert:
-  secretName: jks-crt-secret
+  secretName: mq-server-cert
 
 terminationGracePeriodSeconds: 30
 

@@ -19,8 +19,8 @@ spec:
         - {{ .Values.mqsc.name }}
   securityContext:
     initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
-  # template:
-  #   {{- toYaml .Values.template | nindent 4 }}
+  template:
+    {{- toYaml .Values.template | nindent 4 }}
   terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
   tracing:
     {{- toYaml .Values.tracing | nindent 4 }}

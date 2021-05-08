@@ -65,7 +65,7 @@ ini:
 securityContext:
   initVolumeAsRoot: false
 
-# template:
+template:
 #   pod:
 #     containers:
 #     - env:

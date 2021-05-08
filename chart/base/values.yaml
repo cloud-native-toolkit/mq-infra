@@ -65,14 +65,14 @@ ini:
 securityContext:
   initVolumeAsRoot: false
 
-template:
-  pod:
-    containers:
-    # - env:
-    #   - name: MQSNOAUT
-    #     value: "no"
-      name: qmgr
-      resources: {}
+# template:
+#   pod:
+#     containers:
+#     - env:
+#       - name: MQSNOAUT
+#         value: "no"
+#       name: qmgr
+#       resources: {}
 
 configmap:
   path: config

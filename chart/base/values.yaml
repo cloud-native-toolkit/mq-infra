@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-name: qm-dev-ha
+name: qm-dev
 version: 9.2.0.0-r1
 web:
   enabled: true

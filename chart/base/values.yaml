@@ -20,7 +20,10 @@ image:
 
 queuemanager:
   availability:
-    type: SingleInstance
+    type: NativeHA
+    tls:
+      secretName: mq-server-cert
+      cipherSpec: ANY_TLS12_OR_HIGHER
   debug: false
   imagePullPolicy: IfNotPresent
   livenessProbe:

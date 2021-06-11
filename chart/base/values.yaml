@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-name: qm-dev
+name: qm-dev-ha
 version: 9.2.0.0-r1
 web:
   enabled: true
@@ -47,12 +47,9 @@ queuemanager:
       cpu: "1"
       memory: 1Gi
   storage:
-    persistedData:
-      enabled: false
     queueManager:
-      type: ephemeral
-    recoveryLogs:
-      enabled: false
+      type: persistent-claim
+      size: 2Gi
 
 mqsc:
   configmap: mqsc-configmap

@@ -5,7 +5,7 @@ metadata:
 spec:
   license:
     accept: false
-    license: L-RJON-BXUPZ2
+    license: L-RJON-BYRMYW
     use: NonProduction
   queueManager:
     availability:

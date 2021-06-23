@@ -12,6 +12,11 @@ spec:
     {{- toYaml .Values.queuemanager | nindent 4 }}
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
+    mqsc:
+    - configMap:
+        name: {{ .Values.mqsc.configmap }}
+        items:
+        - {{ .Values.mqsc.name }}
   securityContext:
     initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
   template:

@@ -1,13 +1,13 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: nativeha-example
+  name: {{ .Values.name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
+    helm.sh/hook-weight: "300"
 spec:
   license:
-    accept: true
-    license: L-RJON-BYRMYW
-    use: NonProduction
+    {{- toYaml .Values.license | nindent 4 }}
   queueManager:
-    availability:
-      type: NativeHA
-  version: 9.2.2.0-r1
+    {{- toYaml .Values.queuemanager | nindent 4 }}
+  version: {{ .Values.version }}

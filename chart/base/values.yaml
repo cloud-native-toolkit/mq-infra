@@ -3,13 +3,13 @@
 # Declare variables to be passed into your templates.
 
 name: qm-dev
-version: 9.2.0.0-r1
+version: 9.2.2.0-r1
 web:
   enabled: true
 
 license:
   accept: true
-  license: L-RJON-BN7PN3
+  license: L-RJON-BXUPZ2
   metric: ProcessorValueUnit
   use: NonProduction
 

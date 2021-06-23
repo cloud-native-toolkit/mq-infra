@@ -1,7 +1,7 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-name: qm-native
+  name: nativeha-example
 spec:
   license:
     accept: false

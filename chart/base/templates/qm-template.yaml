@@ -1,43 +1,13 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: {{ .Values.name }}
-  annotations:
-    argocd.argoproj.io/sync-wave: "300"
-    helm.sh/hook-weight: "300"
+name: nativeha-example
 spec:
   license:
-    {{- toYaml .Values.license | nindent 4 }}
+    accept: false
+    license: L-RJON-BXUPZ2
+    use: NonProduction
   queueManager:
-    {{- toYaml .Values.queuemanager | nindent 4 }}
-    # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-    imagePullPolicy: {{ .Values.image.pullPolicy }}
-    mqsc:
-    - configMap:
-        name: {{ .Values.mqsc.configmap }}
-        items:
-        - {{ .Values.mqsc.name }}
-  securityContext:
-    initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
-  template:
-    {{- toYaml .Values.template | nindent 4 }}
-  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-  tracing:
-    {{- toYaml .Values.tracing | nindent 4 }}
-  version: {{ .Values.version }}
-  web:
-    enabled: {{ .Values.web.enabled }}
-  pki:
-    keys:
-      - name: certificate
-        secret:
-          items:
-            - tls.key
-            - tls.crt
-          secretName: {{ .Values.cert.secretName }}
-    trust:
-      - name: ca
-        secret:
-          items:
-            - ca.crt
-          secretName: {{ .Values.cert.secretName }}
+    availability:
+      type: NativeHA
+  version: 9.2.2.0-r1

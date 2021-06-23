@@ -25,23 +25,22 @@ queuemanager:
   #     secretName: mq-server-cert
   #     cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
-  # imagePullPolicy: IfNotPresent
-  # livenessProbe:
-  #   failureThreshold: 1
-  #   initialDelaySeconds: 90
-  #   periodSeconds: 10
-  #   successThreshold: 1
-  #   timeoutSeconds: 5
+  livenessProbe:
+    failureThreshold: 1
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
   # logFormat: Basic
   # metrics:
   #   enabled: true
   # name: QUICKSTART
-  # readinessProbe:
-  #   failureThreshold: 1
-  #   initialDelaySeconds: 10
-  #   periodSeconds: 5
-  #   successThreshold: 1
-  #   timeoutSeconds: 3
+  readinessProbe:
+    failureThreshold: 1
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 3
   # resources:
   #   limits:
   #     cpu: "1"

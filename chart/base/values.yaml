@@ -13,10 +13,10 @@ license:
   metric: ProcessorValueUnit
   use: NonProduction
 
-image:
-  repository: replace
-  tag: replace
-  pullPolicy: Always
+# image:
+#   repository: replace
+#   tag: replace
+#   pullPolicy: Always
 
 queuemanager:
   availability:

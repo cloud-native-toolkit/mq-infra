@@ -12,4 +12,13 @@ spec:
     {{- toYaml .Values.queuemanager | nindent 4 }}
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     imagePullPolicy: {{ .Values.image.pullPolicy }}
+  securityContext:
+    initVolumeAsRoot: {{ .Values.securityContext.initVolumeAsRoot }}
+  template:
+    {{- toYaml .Values.template | nindent 4 }}
+  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+  tracing:
+    {{- toYaml .Values.tracing | nindent 4 }}
   version: {{ .Values.version }}
+  web:
+    enabled: {{ .Values.web.enabled }}

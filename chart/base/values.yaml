@@ -23,7 +23,7 @@ queuemanager:
     type: NativeHA
     tls:
       secretName: mq-server-cert
-  #     cipherSpec: ANY_TLS12_OR_HIGHER
+      cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
   livenessProbe:
     failureThreshold: 1

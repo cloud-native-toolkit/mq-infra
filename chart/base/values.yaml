@@ -21,8 +21,8 @@ image:
 queuemanager:
   availability:
     type: NativeHA
-  #   tls:
-  #     secretName: mq-server-cert
+    tls:
+      secretName: mq-server-cert
   #     cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
   livenessProbe:

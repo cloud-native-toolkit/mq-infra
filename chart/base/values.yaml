@@ -34,7 +34,7 @@ queuemanager:
   logFormat: Basic
   metrics:
     enabled: true
-  # name: QUICKSTART
+  name: QUICKSTART
   readinessProbe:
     failureThreshold: 1
     initialDelaySeconds: 10

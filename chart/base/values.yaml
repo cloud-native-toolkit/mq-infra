@@ -48,13 +48,13 @@ queuemanager:
     requests:
       cpu: "1"
       memory: 1Gi
-  storage:
-    queueManager:
-      # defaultClass: 
-      queueManager:
-        enabled: true
-        size: 2Gi
-        type: persistent-claim
+  # storage:
+  #   queueManager:
+  #     defaultClass:
+  #     queueManager:
+  #       enabled: true
+  #       size: 2Gi
+  #       type: persistent-claim
 
 mqsc:
   configmap: mqsc-configmap

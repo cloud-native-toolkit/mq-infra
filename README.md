@@ -1,6 +1,6 @@
 # mq-infra
 
-This project contains necessary artifacts for deploying queuemanager on Openshift.
+This project contains necessary artifacts for deploying queuemanager with high availability on Openshift.
 
 ## Table of Contents
 

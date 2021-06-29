@@ -27,11 +27,11 @@ queuemanager:
       cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
   storage:
-    # defaultClass: 
+    # defaultClass:
     queueManager:
       enabled: true
-      size: 2Gi
-      type: persistent-claim
+      # size: 2Gi
+      # type: persistent-claim
   livenessProbe:
     failureThreshold: 1
     initialDelaySeconds: 90

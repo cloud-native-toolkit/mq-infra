@@ -26,10 +26,10 @@ queuemanager:
       secretName: mq-server-cert
       cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
-  storage:
+  # storage:
     # defaultClass:
-    queueManager:
-      enabled: true
+    # queueManager:
+    #   enabled: true
       # size: 2Gi
       # type: persistent-claim
   livenessProbe:

@@ -1,6 +1,6 @@
 # mq-infra
 
-This project contains necessary artifacts for deploying queuemanager on Openshift.
+This project contains necessary artifacts for deploying queuemanager with high availability enabled on Openshift.
 
 ## Table of Contents
 
@@ -79,4 +79,4 @@ ini:
     - {{ .Values.ini.name }}
 ```
 
-webhook testing rosa cluster
+

@@ -26,6 +26,12 @@ queuemanager:
       secretName: mq-server-cert
       cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
+  storage:
+    # defaultClass: 
+    queueManager:
+      enabled: true
+      size: 2Gi
+      type: persistent-claim
   livenessProbe:
     failureThreshold: 1
     initialDelaySeconds: 90
@@ -48,13 +54,6 @@ queuemanager:
     requests:
       cpu: "1"
       memory: 1Gi
-  # storage:
-  #   queueManager:
-  #     defaultClass:
-  #     queueManager:
-  #       enabled: true
-  #       size: 2Gi
-  #       type: persistent-claim
 
 mqsc:
   configmap: mqsc-configmap

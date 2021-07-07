@@ -27,7 +27,7 @@ queuemanager:
       cipherSpec: ANY_TLS12_OR_HIGHER
   # debug: false
   storage:
-    # defaultClass: gp2
+    defaultClass: ibmc-block-gold
     queueManager:
       size: 2Gi
       type: persistent-claim

@@ -78,7 +78,3 @@ ini:
     items:
     - {{ .Values.ini.name }}
 ```
-
-
-
-

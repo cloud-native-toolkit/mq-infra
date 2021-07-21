@@ -27,17 +27,3 @@ spec:
   version: {{ .Values.version }}
   web:
     enabled: {{ .Values.web.enabled }}
-  pki:
-    keys:
-      - name: certificate
-        secret:
-          items:
-            - tls.key
-            - tls.crt
-          secretName: {{ .Values.cert.secretName }}
-    trust:
-      - name: ca
-        secret:
-          items:
-            - ca.crt
-          secretName: {{ .Values.cert.secretName }}

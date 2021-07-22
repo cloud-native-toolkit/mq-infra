@@ -6,7 +6,7 @@ This project contains necessary artifacts for deploying queuemanager on Openshif
 
 * [Introduction](#introduction)
 * [Pre-requisites](#pre-requisites)
-* [Deploy Queuemanager](#deploy-queuemanager)
+* [Queuemanager Details](#queuemanager-details)
 
 ## Introduction
 
@@ -39,37 +39,14 @@ This repo contains the below artifacts.
 - [IBM Catalog Operator](https://www.ibm.com/docs/en/app-connect/11.0.0?topic=iicia-enabling-operator-catalog-cloud-pak-foundational-services-operator)
 - [IBM Common Services](https://github.com/IBM/ibm-common-service-operator)
 - [IBM MQ Operator](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=integration-using-mq-in-cloud-pak-openshift)
-- [Cloudnative toolkit](https://cloudnativetoolkit.dev/overview)
 
-## Deploy Queuemanager
+## Queuemanager Details
 
-- Clone the repository locally.
-```
-  git clone https://github.com/cloud-native-toolkit/mq-infra.git
-  cd mq-infra
-```
+- Intially, security is disabled. 
+- To enable security, set `security` to true in `Values.yaml`.
+- To enable high availability, set `ha` to true in `Values.yaml`.
 
-- Create a new project.
-
-```
-oc sync dev
-```
-
-- Run the pipeline.
-```
-oc pipeline --tekton
-```
-
-- Enter git credentials.
-  - Use down/up arrow and select `ibm-mq`.
-  - Hit Enter to enable image scanning.
-  - Open the url to see the pipeline running in the OpenShift Console.
-
-- Verify that Pipeline Run completed successfully.
-
-- To make sure the queuemanager is successfully deployed, run `oc get queuemanager`.
-
-Note: This pipeline demonstrates how to add in the `mqsc` configuration files. Similarly, if you want to configure an `qm.ini`, please create a configMap for the same and inject it under `spec.queueManager` in the `qm-template.yaml` using the below snippet.
+Note: This project demonstrates how to add in the `mqsc` configuration files. Similarly, if you want to configure an `qm.ini`, please create a configMap for the same and inject it under `spec.queueManager` in the `qm-template.yaml` using the below snippet.
 
 ```yaml
 ini:
@@ -78,5 +55,3 @@ ini:
     items:
     - {{ .Values.ini.name }}
 ```
-
-webhook testing rosa cluster

@@ -3,14 +3,14 @@
 # Declare variables to be passed into your templates.
 
 name: qm-dev
-version: 9.2.0.0-r1
+version: 9.2.2.0-r1
 web:
   enabled: true
 
 license:
   accept: true
   license: L-RJON-BN7PN3
-  metric: ProcessorValueUnit
+  halicense: L-RJON-BYRMYW
   use: NonProduction
 
 image:
@@ -19,8 +19,6 @@ image:
   pullPolicy: Always
 
 queuemanager:
-  availability:
-    type: SingleInstance
   debug: false
   imagePullPolicy: IfNotPresent
   livenessProbe:
@@ -32,7 +30,7 @@ queuemanager:
   logFormat: Basic
   metrics:
     enabled: true
-  name: QUICKSTART
+  name: QM1
   readinessProbe:
     failureThreshold: 1
     initialDelaySeconds: 10
@@ -46,13 +44,20 @@ queuemanager:
     requests:
       cpu: "1"
       memory: 1Gi
-  storage:
-    persistedData:
-      enabled: false
-    queueManager:
-      type: ephemeral
-    recoveryLogs:
-      enabled: false
+
+storage:
+  persistedData:
+    enabled: false
+  queueManager:
+    type: ephemeral
+    hatype: persistent-claim
+    size: 2Gi
+  recoveryLogs:
+    enabled: false
+
+availability:
+  type: SingleInstance
+  hatype: NativeHA
 
 mqsc:
   configmap: mqsc-configmap
@@ -86,3 +91,7 @@ tracing:
   collector: {}
   enabled: false
   namespace: ""
+
+security: false
+
+ha: false

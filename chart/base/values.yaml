@@ -80,6 +80,7 @@ template:
 
 configmap:
   path: config
+  pathWithSecurity: security
 
 cert:
   secretName: mq-server-cert

@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 name: qm-dev
-version: 9.2.2.0-r1
+version: 9.2.3.0-r1
 web:
   enabled: true
 

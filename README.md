@@ -18,20 +18,24 @@ This repo contains the below artifacts.
 ```
 .
 ├── Dockerfile
-├── chart
-│   └── base
-│       ├── Chart.yaml
-│       ├── .helmignore
-│       ├── templates
-│       │   ├── NOTES.txt
-│       │   ├── _helpers.tpl
-│       │   └── qm-template.yaml
-│       └── values.yaml
-└── config example
+├── README.md
+└── chart
+    └── base
+        ├── Chart.yaml
+        ├── config
+        │   └── config.mqsc
+        ├── security
+        │   └── config.mqsc
+        ├── templates
+        │   ├── NOTES.txt
+        │   ├── _helpers.tpl
+        │   ├── configmap.yaml
+        │   └── qm-template.yaml
+        └── values.yaml
 ```
 
 - `ibm-mqadvanced-server-integration` docker image that comes with CloudPaks. This image can be further customized if we need additional configurations that are part of queuemanager.
-- `Helm Charts` - Currently, we are using quickstart template for deploying the queuemanager.
+- `Helm Charts` - Currently, we are using quickstart template as our base and building additional things on top of it for deploying the queuemanager.
 - `Configurations` - Like mentioned earlier, the configurations can be embedded as part of Dockerfile. Alternatively, they can also be injected as configmaps.
 
 ## Pre-requisites
@@ -42,7 +46,7 @@ This repo contains the below artifacts.
 
 ## Queuemanager Details
 
-- Intially, security is disabled. 
+- Intially, security and native HA are disabled.
 - To enable security, set `security` to true in `Values.yaml`.
 - To enable high availability, set `ha` to true in `Values.yaml`.
 
@@ -55,3 +59,50 @@ ini:
     items:
     - {{ .Values.ini.name }}
 ```
+
+### Configuration
+
+- Create required queues to store info.
+- Create channel to provide necessary communication links.
+- For this queuemanager, channel authentication is disabled.
+
+## Enable Security
+
+If you want to enable the queuemanager to use security, we need to set the `security` flag to `true` in `Values.yaml`. By default, it is always `false`.
+
+### Configuration
+
+- Create required queues to store info.
+- Except for the channel used by MQ Explorer, all channels with inbound connections are blocked.
+- Create channel to provide necessary communication links.
+- Allow access to the LDAP channel.
+- Privileged user IDs asserted by a client-connection channel are blocked by means of the special value *MQADMIN* by default. We are removing this default rule.
+- For authentication, our queuemanage is using LDAP. We define necessary LDAP configurations. Our sample configurations as follows.
+
+  ```
+    DEFINE AUTHINFO(USE.LDAP) +
+    AUTHTYPE(IDPWLDAP) +
+    CONNAME('openldap.openldap(389)') +
+    LDAPUSER('cn=admin,dc=ibm,dc=com') LDAPPWD('admin') +
+    SECCOMM(NO) +
+    USRFIELD('uid') +
+    SHORTUSR('uid') +
+    BASEDNU('ou=people,dc=ibm,dc=com') +
+    AUTHORMD(SEARCHGRP) +
+    BASEDNG('ou=groups,dc=ibm,dc=com') +
+    GRPFIELD('cn') +
+    CLASSGRP('groupOfUniqueNames') +
+    FINDGRP('uniqueMember') +
+    CHCKCLNT(REQUIRED) +
+    REPLACE
+    ALTER QMGR CONNAUTH(USE.LDAP)
+  ```
+- Enable TLS protocol security. We can specify the cryptographic algorithms that are used by the TLS protocol by supplying a CipherSpec as part of the channel definition along with the authenticated user information.
+- This privileged user will be allowed to access the queue manager and interact with it.
+
+## Enable Native HA
+
+If you want to enable the queuemanager to use native high avaibility capability, we need to set the `ha` flag to `true` in `Values.yaml`. By default, it is always `false`.
+
+- A Native HA configuration provides a highly available queue manager where the recoverable MQ data (for example, the messages)  are replicated across multiple sets of storage, preventing loss from storage failures.
+- This is suitable for use with cloud block storage.
